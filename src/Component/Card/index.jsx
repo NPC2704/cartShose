@@ -31,6 +31,7 @@ const Container = styled.div`
   }
 `;
 const HeadingCart = styled.div``;
+// const HeadingCart = styled.div``;
 const Logo = styled.span`
   img {
   }
