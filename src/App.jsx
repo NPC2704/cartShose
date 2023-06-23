@@ -9,19 +9,18 @@ function App() {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const handleAddProduct = (index) => {
-    const newCart = [
-      ...cart,
-      {
-        product: shoes[index],
-        quantity: 1,
-      },
-    ];
-    setCart(newCart);
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    const newTotalPrice = totalPrice + shoes[index].price;
-    setTotalPrice(newTotalPrice);
+  const handleDecrement = (index) => {
+    if (cart[index].quantity == 1) {
+      handleRemoveItem(index);
+    } else {
+      const newCart = cart;
+      newCart[index].quantity--;
+      const newQuantity = quantity - 1;
+      const newTotalPrice = totalPrice - cart[index].product.price;
+      setTotalPrice(newTotalPrice);
+      setCart(newCart);
+      setQuantity(newQuantity);
+    }
   };
   const handleRemoveItem = (index) => {
     const newCart = cart.filter((item, i) => i != index);
@@ -55,20 +54,21 @@ function App() {
     setQuantity(newQuantity);
     setCart(newCart);
   };
-  const handleDecrement = (index) => {
-    if (cart[index].quantity == 1) {
-      handleRemoveItem(index);
-    } else {
-      const newCart = cart;
-      newCart[index].quantity--;
-      const newQuantity = quantity - 1;
-      const newTotalPrice = totalPrice - cart[index].product.price;
-      setTotalPrice(newTotalPrice);
-      setCart(newCart);
-      setQuantity(newQuantity);
-    }
-  };
 
+  const handleAddProduct = (index) => {
+    const newCart = [
+      ...cart,
+      {
+        product: shoes[index],
+        quantity: 1,
+      },
+    ];
+    setCart(newCart);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    const newTotalPrice = totalPrice + shoes[index].price;
+    setTotalPrice(newTotalPrice);
+  };
   return (
     <div
       className="app"
