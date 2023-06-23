@@ -122,7 +122,7 @@ function App() {
         }
       >
         {cart.length > 0 ? null : (
-          <p className="empty-title">Your cart is empty.</p>
+          <p className="empty-cart">Your cart is empty.</p>
         )}
         {cart.map((item, index) => (
           <div className="cart-item-container" key={index}>
